@@ -7,4 +7,3 @@ router = APIRouter()
 async def image_to_video_route(image: UploadFile = File(...)):
     video_path = generate_video_from_image(image)
     return {"message": "Video generated successfully", "video_path": video_path}
-``
