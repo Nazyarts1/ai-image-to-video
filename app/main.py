@@ -1,4 +1,4 @@
-
+from app.routers.image_to_video_router import router as image_to_video_router
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 import openai
@@ -9,19 +9,18 @@ load_dotenv()
 
 app = FastAPI()
 
+# Load OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# Home route
 @app.get("/")
 def home():
     return {"message": "AI Video Generator Backend Running"}
 
-@app.post("/image-to-video")
-async def image_to_video(image: UploadFile = File(...)):
-    try:
-        return {"status": "success", "message": "Video generated from image"}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+# Include router
+app.include_router(image_to_video_router, prefix="/api")
 
+# Video template sample route
 @app.post("/video-template")
 async def video_template():
     return {"status": "success", "message": "Video template applied"}
