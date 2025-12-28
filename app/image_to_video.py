@@ -14,4 +14,7 @@ def image_to_video(image_url: str, style: str):
 @router.post("/image-to-video")
 async def image_to_video_api(data: ImageToVideoRequest):
     video_url = image_to_video(data.image_url, data.style)
-    return {"status": "success", "video_url": video_url}
+    return {
+        "status": "success",
+        "video_url": video_url
+    }
