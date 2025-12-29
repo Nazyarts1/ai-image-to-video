@@ -1,4 +1,4 @@
-from from fastapi import FastAPI
+from fastapi import FastAPI
 from app.image_to_video import router as image_to_video_router
 
 app = FastAPI()
